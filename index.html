@@ -12,8 +12,11 @@
 
     <script>
       $(document).ready(function() {
-
-        function wordCount(fragment) {
+				function wordCount(fragment) {
+				
+				if(!fragment) {
+					return 0;
+				}
           return fragment.trim().split(/\s+/).length;
         }
         createExample('Word Count', {
@@ -28,7 +31,12 @@
             {
               input: '  ignore  spaces  ',
               output: 2
-            }
+            },
+						{
+							input: null,
+							output: 0
+						}
+											
           ]
         });
 
