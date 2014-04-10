@@ -42,7 +42,18 @@
 
         
 				function reverseText(text) {
-					
+					// retutn null if empty
+					if(text === null) {
+						return null;
+					}	
+					// make and empty string
+						var reversed = '';
+					// loop backwardsover the text
+						for(var index = text.length - 1; index >=0; index--) {
+					// append character to new text
+							reversed += text[index];
+						}
+						return reversed;					
 				}
 				
 				createExample('Reverse Text', {
