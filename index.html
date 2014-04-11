@@ -78,83 +78,18 @@
 
         
 				
-				
-				function tenderChange (amount)
-				
-				/*var amount = '';	
-				var = workingNumber = '';
-					// take number aand multiply by 100
-				function removeDecimal (amount){
-					amount*100 = workingNumber
-					] */
 					
-					// declare variables for 100s, 50s, 20s, 10s, 5s, 1s, quarters, dimes, nickels, penniesvar hundreds =
-					
-					
-				/*	var denominations = [
-					{name: hundreds, value = 10000};
-					{name: twentys, value = 2000};
-					{name: tens, value = 1000};
-					{name: fives, value = 500};
-					{name: ones, value = 100};
-					{name: quarters, value = 25};
-					{name: dimes, value = 10};
-					{name: nickels, value = 5};
-					{name: pennies, value = 1};
-				] */
-					
-
-				// will start with the assumption that the number is less than 1000
-				
-					
-				// is the number less than 100?
-				// If not, sutratct 100 from the number and add one to the 100s counting pile
-				// loop through until the number is less than 100
-				// is the number less than 50?
-				// If not, sutratct 50 from the number and add one to the 50s counting pile
-				// loop through until the number is less than 50
-				// is the number less than 20?
-				// If not, sutratct 20 from the number and add one to the 20s counting pile
-				// loop through until the number is less than 20
-				// is the number less than 10?
-				// If not, sutratct 10 from the number and add one to the 10s counting pile
-				// loop through until the number is less than 10
-			  // is the number less than 5?
-				// If not, sutratct 5 from the number and add one to the 5s counting pile
-				// loop through until the number is less than 5
-				// the remaineder goes into the ones counting pile
-					
-				// now we go to the cents, turn that string back into an interger
-				// is the number greater than 25 cents? If so subtract 25 and add one to the quarter pile
-				// if not put zero in the quarters counting pile and move to dimes	
-				// loop through until the number is less than 25
-				// is the number greater than 10 cents? If so subtract 10 and add one to the dimes pile
-				// if not put zero in the dimes counting pile and move to nickels	
-				// loop through until the number is less than 10
-				// is the number greater than 5 cents? If so subtract 5 and add one to the nickels pile
-				// if not put zero in the nickels counting pile and move to pennies	
-				// the remainder goes in the pennies counting pile
-					
-					
-					
-					// 	on the last number, is it divisible by 5
-				// if not sutrsct the numbr from 5 and it goes into the pennies
-				// input is number with two decimal points
-				// output is an object
-				// multiply by 100 to get rid of decimaljoijoij
-				// us "modula" says evena	
-					
+		
 					
  function tenderChange(amount) {
             var change = {
-            hundreds: 0,
-						twentys: 0,
+            twentys: 0,
 						tens: 0,
 						fives: 0,
             ones: 0,
 						quarters: 0, 
             dimes: 0,
-            nickels: 0;
+            nickels: 0,
 						pennies: 0,
            };
  
@@ -165,30 +100,18 @@
     				bills = Math.floor(amount);
 						coins = Math.floor ((amount - bills)%1*100); 
 						change.twentys = Math.floor (bills/20);
-						change.tens = Math.floor (bills - (change.twentys * 20)) / 10;
-						change.fives =  Math.floor (bills - ((change.twentys * 20) - (change.tens * 10))) / 5;
+						change.tens = Math.floor ((bills - (change.twentys * 20)) / 10);
+						change.fives =  Math.floor ((bills - ((change.twentys * 20) - (change.tens * 10))) / 5);
             change.ones = bills % 5;
             change.quarters = Math.floor (coins / 25); 
-            change.dimes = Math.floor ((coins - (coins / 25) * 10);
-            change.nickles = Math.floor ((coins - ((change.quarters * 25) - (change.dimes * 10))) / 5); 
+            change.dimes = Math.floor ((coins - (coins / 25)) / 10);
+            change.nickels = Math.floor ((coins - ((change.quarters * 25) - (change.dimes * 10))) / 5); 
 						change.pennies = coins % 5;
            }
-           return change(
-         };				
+           return change
+ };				
 				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+			
 				createExample('Tender Change', {
           description: 'Write a function that given a dollar amount returns \
             the change in bills and coins. For instance, given \
@@ -198,12 +121,15 @@
           validation: [
             {
               input: 7.23,
-              output: { fives: 1, ones: 2, dimes: 2, pennies: 3 }
-            }
+              output: { twentys: 0, tens: 0, fives: 1, ones: 2, quarters: 0, dimes: 2, nickels: 0, pennies: 3 }
+            },
+						{
+              input: 10.54,
+              output: { twentys: 0, tens: 1, fives: 0, ones: 0, quarters: 2, dimes: 0, nickels: 0, pennies: 4 }
+            }					
           ]
         });
 				
-								
 			
 
 				
