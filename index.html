@@ -96,18 +96,49 @@
            var bills = 0
            var coins = 0
  
-           if (amount>=0) {
+           if (amount > 0) {
     				bills = Math.floor(amount);
 						coins = Math.floor ((amount - bills)%1*100); 
-						change.twentys = Math.floor (bills/20);
-						change.tens = Math.floor ((bills - (change.twentys * 20)) / 10);
-						change.fives =  Math.floor ((bills - ((change.twentys * 20) - (change.tens * 10))) / 5);
+						
+						if (bills >= 20){
+							change.twentys = Math.floor (bills/20);
+							bills -= 20 * change.twentys;
+						}
+						if (bills >= 10){
+							change.tens = Math.floor (bills/10);
+							bills -= 10 * change.tens;
+						}
+						if (bills >= 5){
+							change.fives = Math.floor (bills/5);
+							bills -= 5 * change.fives;
+						}	
+						 
             change.ones = bills % 5;
-            change.quarters = Math.floor (coins / 25); 
-            change.dimes = Math.floor ((coins - (coins / 25)) / 10);
-            change.nickels = Math.floor ((coins - ((change.quarters * 25) - (change.dimes * 10))) / 5); 
+           
+						if(coins >= 25) {
+  					change.quarters = Math.floor(coins / 25);
+  					coins -= 25 * change.quarters;
+						} 
+						if(coins >= 10) {
+  					change.dimes = Math.floor(coins / 10);
+  					coins -= 10 * change.dimes;
+						}
+						if(coins >= 5) {
+  					change.nickels = Math.floor(coins / 5);
+  					coins -= 5 * change.nickels;
+						}  
 						change.pennies = coins % 5;
-           }
+            } 
+						 
+						 
+						// change.twentys = Math.floor (bills/20);
+						// change.tens = Math.floor ((bills - (change.twentys / 20)) / 10);
+						// change.fives =  Math.floor ((bills - ((change.twentys / 20) + (change.tens * 10))) / 5);
+						 
+						// change.quarters = Math.floor (coins / 25); 
+            // change.dimes = Math.floor ((coins - (coins / 25)) / 10);
+            // change.nickels = Math.floor ((coins - ((change.quarters / 25) + (change.dimes * 10))) / 5); 
+					
            return change
  };				
 				
@@ -124,14 +155,106 @@
               output: { twentys: 0, tens: 0, fives: 1, ones: 2, quarters: 0, dimes: 2, nickels: 0, pennies: 3 }
             },
 						{
-              input: 10.54,
-              output: { twentys: 0, tens: 1, fives: 0, ones: 0, quarters: 2, dimes: 0, nickels: 0, pennies: 4 }
+              input: 91.78,
+              output: { twentys: 4, tens: 1, fives: 0, ones: 1, quarters: 3, dimes: 0, nickels: 0, pennies: 3 }
+            },					
+						{
+              input: 6.33,
+              output: { twentys: 0, tens: 0, fives: 1, ones: 1, quarters: 1, dimes: 0, nickels: 1, pennies: 3 }
             }					
           ]
         });
 				
 			
 
+				
+        function tenderChange (amount) {
+        // set up output variable
+          var change = {
+            twenties: 0,
+            tens: 0,
+            fives: 0,
+            ones: 0,
+            quarters: 0,
+            dimes: 0,
+            nickels: 0,
+            pennies: 0
+            };
+        
+          var bills = 0;
+          var coins = 0;
+          
+          if (amount>0){
+            bills = Math.floor(amount);
+            coins = Math.floor((amount - bills) % 1*100);
+            if (bills>=20){
+				change.twenties = Math.floor (bills/20);
+				bills -= 20*change.twenties;
+			}
+            if (bills>=10){
+				change.tens = Math.floor (bills/10);
+				bills -= 10*change.tens;
+			}
+            if (bills>=5){
+				change.fives = Math.floor (bills/5);
+				bills -= 5*change.fives;
+			}
+            change.ones = bills % 5;
+            change.quarters = Math.floor (coins/25);
+            change.dimes = Math.floor ((coins - (change.quarters* 25))/10);
+            change.nickels = Math.floor ((coins - ((change.quarters * 25)+(change.dimes * 10)))/5);
+            change.pennies = coins % 5;
+          }
+          return change;
+        };  
+        
+        createExample('Tender Change', {
+          description: 'Write a function that given a dollar amount returns \
+            the change in bills and coins. For instance, given \
+            <code>7.23</code> it should return: \
+            <pre>{ fives: 1, ones: 2, dimes: 2, pennies: 3 }</pre>',
+          implementation: tenderChange,
+          validation: [
+                        {
+                          input: 7.23,
+                          output: { twenties: 0, tens: 0, fives: 1, ones: 2, quarters: 0, dimes: 2, nickels: 0, pennies: 3 }
+                        },
+                        {
+                          input: 148.86,
+                          output: { twenties: 7, tens: 0, fives: 1, ones: 3, quarters: 3, dimes: 1, nickels: 0, pennies: 1}
+                        }                      
+                      ]
+        });				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				
 				
 				
