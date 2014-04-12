@@ -95,7 +95,7 @@
  
            if (amount > 0) {
     				bills = Math.floor(amount);
-						coins = Math.floor ((amount - bills)%1*100); 
+						coins = Math.round ((amount - bills)%1*100); 
 						
 						if (bills >= 20){
 							change.twentys = Math.floor (bills/20);
@@ -155,7 +155,7 @@
             },			
 						{
              input: 7.26,
-             output: { twentys: 0, tens: 0, fives: 1, ones: 2, quarters: 0, dimes: 2, nickels: 0, pennies: 1 }
+             output: { twentys: 0, tens: 0, fives: 1, ones: 2, quarters: 1, dimes: 0, nickels: 0, pennies: 1 }
             },			
 						{
              input: 7.25,
