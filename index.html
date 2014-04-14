@@ -181,16 +181,7 @@
         });
 				
 			
-
-
-				
-				
-				
-								
-				
-				
-				
-				
+			
 				
         createExample('The Pluralizer', {
           description: 'Write a function that takes two arguments, a noun \
@@ -227,6 +218,31 @@
           'Star Wars: Episode V - The Empire Strikes Back,1980,503348'
         ];
 
+				
+				var movieList = [
+					{name:'The Shawshank Redemption', year:1994, votes:1043071},
+					{name:'The Godfather', year:1972, votes:732416},
+					{name:'The Godfather: Part II', year:1974, votes:474640},
+					{name:'Pulp Fiction', year:1994, votes:806431},
+					{name:'The Dark Knight', year:2008, votes:1017508},
+					{name:'12 Angry Men', year:1957, votes:255846},
+					{name:'Schindler\'s List', year:1993, votes:528900},
+					{name:'The Lord of the Rings: The Return of the King', year:2003, votes:738931},
+					{name:'Fight Club', year:1999, votes:791186},
+					{name:'Star Wars: Episode V - The Empire Strikes Back', year:1980, votes:503348}
+        ];
+
+					function movieParsing (movieListA, movieListB) {
+						if (movieListA.year > movieListB.year) {
+							return 1;
+						} else if (movieListA.year === movieListB.year) {
+							return 0;
+						} else {
+							return -1;
+						}
+					}	;
+					movieList.sort(movieParsing);
+				
         createExample('Movie Parsing', {
           description: "Given the following comma separated list of IMDb top \
             rated movies: <pre>var movieList = " +
@@ -234,9 +250,11 @@
             "</pre> create a function that splits the values into the title, \
             year, and number of votes and returns a list of movie objects \
             sorted by year.",
-          implementation: null
+          implementation: movieParsing
         });
-      });
+      
+			
+			});
     </script>
 
   </body>
